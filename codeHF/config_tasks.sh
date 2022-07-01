@@ -71,6 +71,8 @@ DOO2_TASK_CHIC=0    # hf-task-chic
 DOO2_TASK_LCK0SP=0  # hf-task-lc-tok0sp
 DOO2_TASK_XICC=0    # hf-task-xicc
 DOO2_TASK_BPLUS=0   # hf-task-bplus
+DOJETS=1            # je-jet-finder-hf
+DOJETMATCHINGHF=1   # je-jet-matching-hf (needs jets)
 # Tree creators
 DOO2_TREE_D0=0      # hf-tree-creator-d0-tokpi
 DOO2_TREE_LC=0      # hf-tree-creator-lc-topkpi
@@ -305,6 +307,10 @@ function MakeScriptO2 {
   [ $DOO2_SEL_BPLUS -eq 1 ] && WORKFLOWS+=" o2-analysis-hf-bplus-tod0pi-candidate-selector"
   # User tasks
   [ $DOO2_TASK_D0 -eq 1 ] && WORKFLOWS+=" o2-analysis-hf-task-d0"
+  [[ $DOO2_TASK_D0 -eq 1 && $DOJETS -eq 1 ]] && WORKFLOWS+=" o2-analysis-je-jet-finder-hf"
+  [[ $DOJETS -eq 1 && $DOJETMATCHINGHF -eq 1 ]] && WORKFLOWS+=" o2-analysis-je-jet-finder-hf-mcd"
+  [[ $DOJETS -eq 1 && $DOJETMATCHINGHF -eq 1 ]] && WORKFLOWS+=" o2-analysis-je-jet-finder-hf-mcp"
+  [[ $DOJETS -eq 1 && $DOJETMATCHINGHF -eq 1 ]] && WORKFLOWS+=" o2-analysis-je-jet-matching-hf"
   [ $DOO2_TASK_JPSI -eq 1 ] && WORKFLOWS+=" o2-analysis-hf-task-jpsi"
   [ $DOO2_TASK_DPLUS -eq 1 ] && WORKFLOWS+=" o2-analysis-hf-task-dplus"
   [ $DOO2_TASK_LC -eq 1 ] && WORKFLOWS+=" o2-analysis-hf-task-lc"
@@ -335,7 +341,7 @@ function MakeScriptO2 {
   [ $DOO2_TRKPROP -eq 1 ] && WORKFLOWS+=" o2-analysis-track-propagation"
 
   # Translate options into arguments of the generating script.
-  OPT_MAKECMD=""
+  OPT_MAKECMD="-d"
   [ "$ISMC" -eq 1 ] && OPT_MAKECMD+=" --mc"
   [ "$DEBUG" -eq 1 ] && OPT_MAKECMD+=" -d"
   [ $SAVETREES -eq 1 ] && OPT_MAKECMD+=" -t"
