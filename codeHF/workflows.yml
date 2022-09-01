@@ -217,6 +217,10 @@ workflows:
     requires_mc: yes
     dependencies: [o2-analysis-je-jet-finder-hf-mcd, o2-analysis-je-jet-finder-hf-mcp]
 
+  o2-analysis-je-jet-matching-hf-qa:
+    requires_mc: yes
+    dependencies: o2-analysis-je-jet-matching-hf
+
   # Tree creators
 
   o2-analysis-hf-tree-creator-d0-tokpi:
