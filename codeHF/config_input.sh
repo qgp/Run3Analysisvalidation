@@ -69,9 +69,15 @@ case $INPUT_CASE in
     INPUT_LABEL="Run 2, p-p 13 TeV LHC18f, MC LHC20f4a (ESD)"
     INPUT_DIR="/data2/vkucera/alice/sim/2020/LHC20f4a/294774"
     ISMC=1;;
+#  9)
+#    INPUT_LABEL="Run 2, p-p 13 TeV LHC18f, MC LHC20f4a (AO2D)"
+#    INPUT_DIR="/data2/vkucera/alice/sim/2020/LHC20f4a/converted/294774"
+#    INPUT_FILES="AO2D.root"
+#    ISINPUTO2=1
+#    ISMC=1;;
   9)
     INPUT_LABEL="Run 2, p-p 13 TeV LHC18f, MC LHC20f4a (AO2D)"
-    INPUT_DIR="/data2/vkucera/alice/sim/2020/LHC20f4a/converted/294774"
+    INPUT_DIR="/data2/data/Run2/pp_13TeV/sim_converted/LHC20f4a"
     INPUT_FILES="AO2D.root"
     ISINPUTO2=1
     ISMC=1;;

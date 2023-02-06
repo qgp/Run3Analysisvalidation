@@ -118,7 +118,8 @@ MsgStep "Generating list of input files..."
 [ $ISINPUTO2 -eq 1 ] && LISTFILES="$LISTFILES_O2" || LISTFILES="$LISTFILES_ALI"
 INPUT_DIR="$(realpath "$INPUT_DIR")"
 [ $DEBUG -eq 1 ] && { echo "Searching for $INPUT_FILES in $INPUT_DIR"; }
-find "$INPUT_DIR" -name "$INPUT_FILES" | sort | head -n $NFILESMAX > "$LISTFILES"
+find "$INPUT_DIR" -name "$INPUT_FILES" | sort | head -n $NFILESMAX > "$LISTFILES.1"
+grep -v '/data2/vkucera/alice/sim/2020/LHC20f4a/converted/294774/28/AO2D.root' $LISTFILES.1 > $LISTFILES
 [[ ${PIPESTATUS[0]} -eq 0 || ${PIPESTATUS[0]} -eq 141 ]] || ErrExit "Failed to make a list of input files."
 [ "$(wc -l < "$LISTFILES")" -eq 0 ] && { ErrExit "No input files!"; }
 
